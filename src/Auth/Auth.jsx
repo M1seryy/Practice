@@ -9,10 +9,10 @@ export const Auth = () => {
   const [data, setData] = useState("");
   const URL = "https://dev1-api.twelve.football/auth/login/username";
   let postFetch = () => {
-    axios.post(URL, { USER_DATA }).then((response) => {
+    axios.post(URL, USER_DATA).then((response) => {
       setData(response.data);
       console.log(data);
-    });
+    }).catch((error) => console.error(error));
   };
   return (
     <div className="wrap">
