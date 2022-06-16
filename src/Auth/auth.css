@@ -1,0 +1,14 @@
+.SingIn {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 35px;
+}
+footer {
+  display: flex;
+  min-width: 300%;
+  min-height: 50px;
+  background-color: black;
+}
+.main-container {
+  width: 960px;
+  margin: 0 auto;
+}
