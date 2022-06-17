@@ -14,6 +14,7 @@ export const Auth = () => {
     axios.post(URL, USER_DATA).then((response) => {
       setData(response.data);
       console.log(data);
+<<<<<<< HEAD
       console.log(data.accessToken);
     });
     setToken(data.accessToken);
@@ -21,6 +22,9 @@ export const Auth = () => {
       setAuth(!isAuth);
       console.log(isAuth);
     }
+=======
+    }).catch((error) => console.error(error));
+>>>>>>> 06995b8898c40f8ed0c596a356f65b8ac23d3754
   };
   let logOut = () => {
     setAuth(false);
