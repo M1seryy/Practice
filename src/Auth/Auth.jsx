@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,21 +6,30 @@ import "./auth.css";
 
 export const Auth = () => {
   const USER_DATA = { id: "admin1", secret: "Pa$$w0rd" };
+
+  let email = useRef("");
+  let pass = useRef("");
+  let emailValue = email.current.value;
+  let passValue = pass.current.value;
+
   let [token, setToken] = useState("");
   let [isAuth, setAuth] = useState(false);
   const [data, setData] = useState("");
+
   const URL = "https://dev1-api.twelve.football/auth/login/username";
+
   let postFetch = () => {
     axios.post(URL, USER_DATA).then((response) => {
       setData(response.data);
       console.log(data);
-
       console.log(data.accessToken);
     });
     setToken(data.accessToken);
-    if (token !== "") {
-      setAuth(!isAuth);
-      console.log(isAuth);
+    if (emailValue == "admin1" && passValue == "Pa$$w0rd") {
+      if (token !== "") {
+        setAuth(!isAuth);
+        console.log(isAuth);
+      }
     }
   };
   let logOut = () => {
@@ -35,6 +44,7 @@ export const Auth = () => {
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input
+              ref={email}
               type="email"
               class="form-control"
               id="exampleInputEmail1"
@@ -45,6 +55,7 @@ export const Auth = () => {
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input
+              ref={pass}
               type="password"
               class="form-control"
               id="exampleInputPassword1"
@@ -71,6 +82,7 @@ export const Auth = () => {
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input
+              ref={email}
               type="email"
               class="form-control"
               id="exampleInputEmail1"
@@ -81,6 +93,7 @@ export const Auth = () => {
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input
+              ref={pass}
               type="password"
               class="form-control"
               id="exampleInputPassword1"
