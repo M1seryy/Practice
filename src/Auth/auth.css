@@ -12,3 +12,9 @@ footer {
   width: 960px;
   margin: 0 auto;
 }
+.logOut {
+  background-color: black;
+  color: white;
+  position: relative;
+  left: 1370px;
+}
