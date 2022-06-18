@@ -3,33 +3,28 @@ import { useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./auth.css";
+import { postRequest } from "../API";
 
 export const Auth = () => {
-  const USER_DATA = { id: "admin1", secret: "Pa$$w0rd" };
+  // const USER_DATA = { id: "admin1", secret: "Pa$$w0rd" };
 
-  let email = useRef("");
+  let username = useRef("");
   let pass = useRef("");
-  let emailValue = email.current.value;
+  let usernameValue = username.current.value;
   let passValue = pass.current.value;
 
   let [token, setToken] = useState("");
   let [isAuth, setAuth] = useState(false);
   const [data, setData] = useState("");
 
-  const URL = "https://dev1-api.twelve.football/auth/login/username";
+  // const URL = "https://dev1-api.twelve.football/auth/login/username";
 
   let postFetch = () => {
-    axios.post(URL, USER_DATA).then((response) => {
-      setData(response.data);
-      console.log(data);
-      console.log(data.accessToken);
-    });
-    setToken(data.accessToken);
-    if (emailValue == "admin1" && passValue == "Pa$$w0rd") {
-      if (token !== "") {
-        setAuth(!isAuth);
-        console.log(isAuth);
-      }
+    setToken(postRequest());
+
+    if (token !== "") {
+      setAuth(!isAuth);
+      console.log(isAuth);
     }
   };
   let logOut = () => {
@@ -42,14 +37,14 @@ export const Auth = () => {
         <div id="cont" className="main-container">
           <h2 className="SingIn">Sing In</h2>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="exampleInputEmail1">Username</label>
             <input
-              ref={email}
-              type="email"
+              ref={username}
+              type="text"
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              placeholder="Enter username"
             />
           </div>
           <div class="form-group">
@@ -78,16 +73,16 @@ export const Auth = () => {
           </button>
         </footer>
         <div id="cont" className="main-container">
-          <h2 className="SingIn">{data.username}</h2>
+          <h2 className="SingIn">{usernameValue}</h2>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input
-              ref={email}
-              type="email"
+              ref={username}
+              type="text"
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              placeholder="Enter username"
             />
           </div>
           <div class="form-group">
