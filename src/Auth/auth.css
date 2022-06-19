@@ -4,9 +4,10 @@
 }
 footer {
   display: flex;
-  min-width: 300%;
+  min-width: 100%;
   min-height: 50px;
   background-color: black;
+  justify-content: space-around;
 }
 .main-container {
   width: 960px;
@@ -16,5 +17,10 @@ footer {
   background-color: black;
   color: white;
   position: relative;
-  left: 1370px;
+  font-size: 30px;
+}
+#link-items {
+  color: white;
+  font-size: 30px;
+  text-decoration: none;
 }

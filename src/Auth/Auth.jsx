@@ -4,6 +4,10 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./auth.css";
 import { postRequest } from "../API";
+import { Routes, Route, Link } from "react-router-dom";
+import { Player } from "../PlayersComponent/Player";
+import { Matches } from "../matches/Matches";
+// import { Routers } from "../Routes";
 
 export const Auth = () => {
   // const USER_DATA = { id: "admin1", secret: "Pa$$w0rd" };
@@ -35,7 +39,17 @@ export const Auth = () => {
   if (isAuth === false) {
     return (
       <div className="wrap">
-        <footer></footer>
+        <footer>
+          <Link id="link-items" to="/">
+            Sing In
+          </Link>
+          <Link id="link-items" to="/players">
+            Players
+          </Link>
+          <Link id="link-items" to="/matches">
+            matches
+          </Link>
+        </footer>
         <div id="cont" className="main-container">
           <h2 className="SingIn">Sing In</h2>
           <div class="form-group">
@@ -64,15 +78,30 @@ export const Auth = () => {
             Submit
           </button>
         </div>
+        {
+          <Routes>
+            <Route path="/players" element={<Player />} />
+            <Route path="/matches" element={<Matches />} />
+          </Routes>
+        }
       </div>
     );
   } else if (isAuth === true) {
     return (
       <div className="wrap">
         <footer>
+          <Link id="link-items" to="/">
+            Sing In
+          </Link>
+          <Link id="link-items" to="/players">
+            Players
+          </Link>
           <button onClick={logOut} className="logOut">
             Log out
           </button>
+          <Link id="link-items" to="/matches">
+            matches
+          </Link>
         </footer>
         <div id="cont" className="main-container">
           <h2 className="SingIn">{usernameValue}</h2>
@@ -102,6 +131,10 @@ export const Auth = () => {
             Submit
           </button>
         </div>
+        <Routes>
+          <Route path="/players" element={<Player />} />
+          <Route path="/matches" element={<Matches />} />
+        </Routes>
       </div>
     );
   }
