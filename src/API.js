@@ -6,15 +6,20 @@ export let postRequest = () => {
   // let [token, setToken] = useState("");
   let tokenApi;
   // const [data, setData] = useState("");
-  let dataRequest;
 
   let usernameValue = document.getElementById("exampleInputEmail1").value;
   let passValue = document.getElementById("exampleInputPassword1").value;
 
-  axios.post(URL, { id: usernameValue, secret: passValue }).then((response) => {
-    let dataRequest = response.data;
-    console.log(dataRequest);
-    console.log(dataRequest.accessToken);
-    return dataRequest;
-  });
+  axios
+    .post(URL, { id: usernameValue, secret: passValue })
+    .then((response) => {
+      let dataRequest = response.data;
+      console.log(dataRequest);
+      console.log(dataRequest.accessToken);
+      tokenApi = dataRequest.accessToken;
+      return tokenApi;
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });
 };

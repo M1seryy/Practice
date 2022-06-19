@@ -21,16 +21,18 @@ export const Auth = () => {
 
   let postFetch = () => {
     setToken(postRequest());
+    console.log(token);
 
     if (token !== "") {
-      setAuth(!isAuth);
+      setAuth(true);
+
       console.log(isAuth);
     }
   };
   let logOut = () => {
     setAuth(false);
   };
-  if (isAuth == false) {
+  if (isAuth === false) {
     return (
       <div className="wrap">
         <footer></footer>
@@ -64,7 +66,7 @@ export const Auth = () => {
         </div>
       </div>
     );
-  } else {
+  } else if (isAuth === true) {
     return (
       <div className="wrap">
         <footer>
@@ -75,7 +77,7 @@ export const Auth = () => {
         <div id="cont" className="main-container">
           <h2 className="SingIn">{usernameValue}</h2>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="exampleInputEmail1">Username</label>
             <input
               ref={username}
               type="text"
