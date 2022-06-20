@@ -7,7 +7,6 @@ import { postRequest } from "../API";
 import { Routes, Route, Link } from "react-router-dom";
 import { Player } from "../PlayersComponent/Player";
 import { Matches } from "../matches/Matches";
-// import { Routers } from "../Routes";
 
 export const Auth = () => {
   // const USER_DATA = { id: "admin1", secret: "Pa$$w0rd" };
@@ -78,12 +77,11 @@ export const Auth = () => {
             Submit
           </button>
         </div>
-        {
-          <Routes>
-            <Route path="/players" element={<Player />} />
-            <Route path="/matches" element={<Matches />} />
-          </Routes>
-        }
+
+        <Routes>
+          <Route path="/players" element={<Player />} />
+          <Route path="/matches" element={<Matches />} />
+        </Routes>
       </div>
     );
   } else if (isAuth === true) {
