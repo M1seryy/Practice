@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./auth.css";
-import { postRequest } from "../API";
+import { authRequest } from "../API";
 import { Routes, Route, Link } from "react-router-dom";
 import { Player } from "../PlayersComponent/Player";
 import { Matches } from "../matches/Matches";
@@ -22,8 +22,10 @@ export const Auth = () => {
 
   // const URL = "https://dev1-api.twelve.football/auth/login/username";
 
-  let postFetch = () => {
-    setToken(postRequest());
+  let postFetch = async () => {
+    const authResponse = await authRequest();
+    console.log(authResponse);
+    setToken(await authRequest());
     console.log(token);
 
     if (token !== "") {

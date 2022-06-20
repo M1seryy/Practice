@@ -1,7 +1,9 @@
 import axios from "axios";
 
-export let postRequest = () => {
-  const URL = "https://dev1-api.twelve.football/auth/login/username";
+const BASE_URL = "https://dev1-api.twelve.football";
+
+export let authRequest = async () => {
+  const URL = `${BASE_URL}/auth/login/username`;
 
   // let [token, setToken] = useState("");
   let tokenApi;
@@ -9,17 +11,15 @@ export let postRequest = () => {
 
   let usernameValue = document.getElementById("exampleInputEmail1").value;
   let passValue = document.getElementById("exampleInputPassword1").value;
-
-  axios
-    .post(URL, { id: usernameValue, secret: passValue })
-    .then((response) => {
-      let dataRequest = response.data;
-      console.log(dataRequest);
-      console.log(dataRequest.accessToken);
-      tokenApi = dataRequest.accessToken;
-      return tokenApi;
-    })
-    .catch((error) => {
-      console.log(error.response.data);
+  try {
+    const response = await axios.post(URL, {
+      id: usernameValue,
+      secret: passValue,
     });
+    let dataRequest = response.data;
+    tokenApi = dataRequest.accessToken;
+    return tokenApi;
+  } catch (err) {
+    throw new Error("Unable to establish a login session.");
+  }
 };
