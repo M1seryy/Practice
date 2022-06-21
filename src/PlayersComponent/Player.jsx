@@ -7,6 +7,7 @@ import axios from "axios";
 
 export const Player = () => {
   const [selected, setSelected] = useState([]);
+  console.log(selected);
 
   return (
     <div className="inputWrap">
@@ -17,6 +18,7 @@ export const Player = () => {
         placeholder="Choose a state..."
         selected={selected}
       />
+      {selected !== "" ? <h1>{selected[0].label}</h1> : null}
     </div>
   );
 };

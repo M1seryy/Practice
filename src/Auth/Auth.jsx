@@ -7,6 +7,7 @@ import { authRequest } from "../API";
 import { Routes, Route, Link } from "react-router-dom";
 import { Player } from "../PlayersComponent/Player";
 import { Matches } from "../matches/Matches";
+import Alert from "react-bootstrap/Alert";
 
 export const Auth = () => {
   // const USER_DATA = { id: "admin1", secret: "Pa$$w0rd" };
@@ -19,21 +20,24 @@ export const Auth = () => {
   let [token, setToken] = useState("");
   let [isAuth, setAuth] = useState(false);
   const [data, setData] = useState("");
+  const [post, setPost] = useState(false);
 
   // const URL = "https://dev1-api.twelve.football/auth/login/username";
 
   let postFetch = async () => {
+    setPost(true);
     const authResponse = await authRequest();
+
+    console.log(post);
     console.log(authResponse);
     setToken(await authRequest());
-    console.log(token);
 
-    if (token !== "") {
+    if (authResponse !== null) {
       setAuth(true);
-
-      console.log(isAuth);
+      setPost(false);
     }
   };
+
   let logOut = () => {
     setAuth(false);
   };
@@ -75,6 +79,11 @@ export const Auth = () => {
             />
           </div>
           <div class="form-check"></div>
+          {post === true ? (
+            <Alert variant="danger">
+              <Alert.Heading>Auth failed</Alert.Heading>
+            </Alert>
+          ) : null}
           <button onClick={postFetch} type="submit" class="btn btn-light">
             Submit
           </button>

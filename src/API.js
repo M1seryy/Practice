@@ -17,8 +17,7 @@ export let authRequest = async () => {
       secret: passValue,
     });
     let dataRequest = response.data;
-    tokenApi = dataRequest.accessToken;
-    return tokenApi;
+    return dataRequest.accessToken;
   } catch (err) {
     throw new Error("Unable to establish a login session.");
   }
