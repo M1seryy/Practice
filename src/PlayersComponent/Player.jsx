@@ -40,9 +40,10 @@ export const Player = () => {
         options={options}
         placeholder="Choose a state..."
       />
-      <hr />
+
       {hide === false ? (
         <div className="">
+          <hr />
           <div className="photo">
             <div className="icon"></div>
             <input className="inputPhoto" type="file" />

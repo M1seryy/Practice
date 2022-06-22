@@ -1,4 +1,21 @@
 .matches {
+  width: 960px;
+  height: 500px;
+
+  background-color: rgb(255, 255, 255);
+  margin: 0 auto;
   position: relative;
-  top: 200px;
+  bottom: 238px;
+}
+.textSize {
+  font-size: 1.5rem;
+}
+.time {
+  margin-left: 130px;
+}
+.score {
+  margin-left: 140px;
+}
+.team1 {
+  margin-left: 125px;
 }
